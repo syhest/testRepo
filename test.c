@@ -1,50 +1,61 @@
-#include "type.h"
+#include <stdio.h>
 
-void main()
-{	
-	printf("hello world！！！！！");
-	fun_1();
-	fun_2();
-	
-}#define total_second 24*60*60
+#define total_second 60
+#define total_minune 60 
+#define total_hour 24
+static int get_hour_d(uint16_t hour, uint16_t minune)
+{
 
-int get_hour_d(uint16_t second)
-{
-	return second/60
-}
-int get_minu_d(uint16_t second)
-{
+	int hour_degree;
+
+	hour_degree = hour%12 *30 + (minune/12)*6 ;
 	
+	return hour_degree;
 }
-int get_sec_d(uint16_t second)
+static int get_minu_d(uint16_t minune)
 {
-	
+	return minune*6 ;
 }
-void main()
+static int get_sec_d(uint16_t second)
+{
+	return second*6 ;
+}
+/**
+ * main - 打印出一天中时针，分针，秒针角度两两大于某值次数百分
+ * 
+ * 返回值:void
+ */
+void main(void)
 {
 	int i;
-	int test_d；
+	int j;
+	int k;
+	int test_d;
 	int hour_d,minu_d,sec_d;
 	uint16_t second;
 	uint16_t happy_cnt;
-	for(i=0; i<total_second; i++)
+	for(i=0; i<total_hour; i++)
 	{
-		second++;
-		hour_d = get_hour_d(second);//时针角度
-		minu_d = get_minu_d(second);//分针角度
-		sec_d  = get_sec_d(second);//秒针角度
-		
-		if(abs(hour_d - minu_d) >= test_d && abs(hour_d - sec_d) >= test_d)
+		for(j=0; j<total_minune; j++)
 		{
-			if(abs(sec_d - hour_d) >= test_d && abs(sec_d - minu_d) >= test_d)
+			for(k=0; k<total_second; k++)
 			{
-				if(abs(minu_d - hour_d) >= test_d && abs(minu_d - sec_d) >= test_d)
+				hour_d = get_hour_d(i,j);
+				minu_d = get_hour_d(j);
+				sec_d = get_hour_d(k);
+				if(abs(hour_d - minu_d) >= test_d && abs(hour_d - sec_d) >= test_d)
 				{
-					happy_cnt++
+					if(abs(sec_d - hour_d) >= test_d && abs(sec_d - minu_d) >= test_d)
+					{
+						if(abs(minu_d - hour_d) >= test_d && abs(minu_d - sec_d) >= test_d)
+						{
+							happy_cnt++
+							printf("hour = %d,minune = %d,second = %d",i,j,k);	
+						}
+					}
 				}
 			}
-		
 		}
-		printf("happy percent = ")	
 	}
+	printf("happy percent = %d",(happy_cnt/total_second)*100);	
 }
