@@ -1,24 +1,28 @@
 #include <stdio.h>
 
-#define total_second 60
-#define total_minune 60 
-#define total_hour 24
+#define total_second		60
+#define total_minune		60 
+#define total_hour			24
+#define degree_per_hour		30
+#define degree_per_minu		6
+#define degree_per_seco		6
+
 static int get_hour_d(uint16_t hour, uint16_t minune)
 {
 
 	int hour_degree;
 
-	hour_degree = hour%12 *30 + (minune/12)*6 ;
+	hour_degree = hour%12 *degree_per_hour + (minune/12)*degree_per_minu ;
 	
 	return hour_degree;
 }
 static int get_minu_d(uint16_t minune)
 {
-	return minune*6 ;
+	return minune*degree_per_minu;
 }
 static int get_sec_d(uint16_t second)
 {
-	return second*6 ;
+	return second*degree_per_seco;
 }
 /**
  * main - 打印出一天中时针，分针，秒针角度两两大于某值次数百分
@@ -49,7 +53,7 @@ void main(void)
 					{
 						if(abs(minu_d - hour_d) >= test_d && abs(minu_d - sec_d) >= test_d)
 						{
-							happy_cnt++
+							happy_cnt++;
 							printf("hour = %d,minune = %d,second = %d",i,j,k);	
 						}
 					}
