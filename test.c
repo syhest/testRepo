@@ -45,8 +45,8 @@ void main(void)
 			for(k=0; k<total_second; k++)
 			{
 				hour_d = get_hour_d(i,j);
-				minu_d = get_hour_d(j);
-				sec_d = get_hour_d(k);
+				minu_d = get_minu_d(j);
+				sec_d = get_sec_d(k);
 				if(abs(hour_d - minu_d) >= test_d && abs(hour_d - sec_d) >= test_d)
 				{
 					if(abs(sec_d - hour_d) >= test_d && abs(sec_d - minu_d) >= test_d)
@@ -54,12 +54,12 @@ void main(void)
 						if(abs(minu_d - hour_d) >= test_d && abs(minu_d - sec_d) >= test_d)
 						{
 							happy_cnt++;
-							printf("hour = %d,minune = %d,second = %d",i,j,k);	
+							printf("hour = %d,minune = %d,second = %d\r\n",i,j,k);	
 						}
 					}
 				}
 			}
 		}
 	}
-	printf("happy percent = %d",(happy_cnt/total_second)*100);	
+	printf("happy percent = %d\r\n",(happy_cnt/total_second)*100);	
 }
