@@ -61,5 +61,6 @@ void main(void)
 			}
 		}
 	}
+	printf("happy percent count = %d\r\n",happy_cnt);
 	printf("happy percent = %d\r\n",(happy_cnt/total_second)*100);	
 }
